@@ -1,7 +1,11 @@
 ---
 titre: Avatar
-dateSortie: 2009-12-18*
+dateSortie: 2009-12-18
 realisateur: mel-gibson
+scenaristes: 
+ - leonardo-dicaprio
+ - robert-downey
+ - nathalie-portman
 ---
 
 # Avatar
