@@ -1,6 +1,7 @@
 ---
 titre: Avatar
-dateSortie: 2009-12-18
+dateSortie: 2009-12-18*
+realisateur: mel-gibson
 ---
 
 # Avatar
