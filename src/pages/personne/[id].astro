@@ -15,12 +15,22 @@ const { personne } = Astro.props;
 const { Content } = await render(personne);
 ---
 
-<Layout pageTitle={`Fiche de ${personne.data.nom}`} >
-    <h1>{personne.data.nom}</h1>
-    <p>Lieu de naissance{personne.data.lieuNaissance}</p>
-    <p>Date de naissance {formatDate(personne.data.dateNaissance)}</p>
-    {personne.data.dateDeces && <p>Date de décès : {formatDate(personne.data.dateDeces)} </p>}
-    <div class="prose">
-        <Content />
-    </div>
+<Layout pageTitle={`Fiche de ${personne.data.nom}`}>
+  <h1>{personne.data.nom}</h1>
+  <p>Lieu de naissance{personne.data.lieuNaissance}</p>
+  <p>Date de naissance {formatDate(personne.data.dateNaissance)}</p>
+  {
+    personne.data.dateDeces && (
+      <p>Date de décès : {formatDate(personne.data.dateDeces)} </p>
+    )
+  }
+
+  {
+    personne.data.profession && (
+      <p>Profession : {personne.data.profession.join(", ")} </p>
+    )
+  }
+  <div class="prose">
+    <Content />
+  </div>
 </Layout>
