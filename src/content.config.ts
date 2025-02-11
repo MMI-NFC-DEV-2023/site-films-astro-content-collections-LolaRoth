@@ -16,19 +16,16 @@ const personne = defineCollection({
 });
 
 const film = defineCollection({
-    loader: glob({ base: "src/data/film", pattern: "**/*.md" }),
-    schema: z.object({
-        titre: z.string(),
-        dateSortie: z.date(),
-        realisateur: reference("personne").optional(),
-        scenaristes: z.array(reference("personne")).optional(),
-        roles: z.array(
-            z.object({
-                acteur: reference("personne"),
-                role: z.string(),
-            })
-        )
-    }),
+  loader: glob({ base: "src/data/film", pattern: "**/*.md" }),
+  schema: z.object({
+    titre: z.string(),
+    dateSortie: z.date(),
+    realisateur: reference("personne").optional(),
+    scenaristes: z.array(reference("personne")).optional(),
+    roles: z
+      .array(z.object({ acteur: reference("personne"), role: z.string() }))
+      .optional(),
+  }),
 });
 
 export const collections = { personne, film };

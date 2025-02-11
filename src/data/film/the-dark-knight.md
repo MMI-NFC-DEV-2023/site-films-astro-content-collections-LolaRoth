@@ -6,11 +6,11 @@ scenaristes:
   - robert-downey
   - mel-gibson
 roles:
-  - acteur: Christian Bale
+  - acteur: christian-bale
     role: Bruce Wayne / Batman
-  - acteur: Heath Ledger
+  - acteur: heath-ledger
     role: Joker
-  - acteur: Aaron Eckhart
+  - acteur: aaron-eckhart
     role: Harvey Dent / Two-Face
 ---
 
