@@ -10,3 +10,4 @@ nationalite: US
 - Acteur
 - Film
 - Réalisateur
+- scénariste
