@@ -5,6 +5,14 @@ realisateur: mel-gibson
 scenaristes: 
  - robert-downey
  - nathalie-portman
+
+roles:
+  - acteur: leonardo-dicaprio
+    role: Dom Cobb
+  - acteur: joseph-gordon-levitt
+    role: Arthur
+  - acteur: ellen-page
+    role: Ariadne
 ---
 
 # Inception
