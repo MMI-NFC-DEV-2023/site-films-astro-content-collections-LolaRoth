@@ -1,0 +1,15 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { getCollection } from "astro:content"
+
+const personne = await getCollection("personne");
+---
+<Layout pageTitle="Liste des personnes">
+    <h1>Liste des personnes</h1>
+    <ul class="flex gap-2 m-4">
+        {personne.map((personne) => 
+        <li>
+            <a class="bg-violet-400 p-2 rounded-lg" href={`/personne/${personne.id}`}>{personne.data.nom}</a>
+        </li>)}
+    </ul>
+</Layout>
