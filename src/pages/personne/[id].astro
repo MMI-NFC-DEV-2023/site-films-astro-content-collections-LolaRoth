@@ -2,6 +2,7 @@
 import LinkFilm from "@components/LinkFilm.astro";
 import ListLinkFilm from "@components/ListLinkFilm.astro";
 import Layout from "@layouts/Layout.astro";
+import type { ACTION_ERROR_CODES } from "astro:actions";
 import { getCollection, render } from "astro:content";
 import { formatDate } from "src/helpers";
 // 1. Génére un nouveau chemin pour chaque entrée de collection
@@ -21,6 +22,14 @@ const professions = personne.data.profession && [
 
 const filmRealises = [...(await getCollection("film"))].filter(
   (film) => film.data?.realisateur?.id === personne.id
+);
+
+const filmsScenarises = [...(await getCollection("film"))].filter((film) =>
+  film.data?.scenaristes?.some((s) => s.id === personne.id)
+);
+
+const filmsActeur = [...(await getCollection("film"))].filter((film) =>
+  film.data?.roles?.some((r) => r.acteur?.id === personne.id)
 );
 ---
 
@@ -42,14 +51,37 @@ const filmRealises = [...(await getCollection("film"))].filter(
       </p>
     )
   }
-    {
-        filmRealises.length > 0 && (
-        <>
-            <h2>Films réalisés</h2>
-            <ListLinkFilm films={filmRealises} />
-        </>
-        )
-    }
+  {
+    filmRealises.length > 0 && (
+      <>
+        <h2>Films réalisés</h2>
+        <ListLinkFilm films={filmRealises} />
+      </>
+    )
+  }
+  {
+    filmsScenarises.length > 0 && (
+      <>
+        <h2>Films scénarisés</h2>
+        <ListLinkFilm films={filmsScenarises} />
+      </>
+    )
+  }
+  {
+    filmsActeur.length > 0 && (
+      <p class="text-lg text-gray-700">
+        <strong>🎭 Films dans lesquels il/elle a joué :</strong>{" "}
+        {filmsActeur.map((film, index) => (
+          <>
+            <LinkFilm {...film} /> en tant que{" "}
+            {film.data.roles?.find((r) => r.acteur.id === personne.id)?.role}
+            {index < filmsActeur.length - 2 ? ", " : ""}
+            {index === filmsActeur.length - 2 ? " et " : ""}
+          </>
+        ))}
+      </p>
+    )
+  }
   <div class="prose">
     <Content />
   </div>
