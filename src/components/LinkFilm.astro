@@ -1,0 +1,8 @@
+---
+import type { CollectionEntry } from 'astro:content'
+
+type Props = CollectionEntry<"film">
+const film = Astro.props
+---
+
+<a href="{`/film/${film.id}`}">{film.data.titre}</a>
