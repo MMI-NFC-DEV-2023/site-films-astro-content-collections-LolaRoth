@@ -20,8 +20,8 @@ const professions = personne.data.profession && [
 
 <Layout pageTitle={`Fiche de ${personne.data.nom}`}>
   <h1>{personne.data.nom}</h1>
-  <p>Lieu de naissance{personne.data.lieuNaissance}</p>
-  <p>Date de naissance {formatDate(personne.data.dateNaissance)}</p>
+  <p>Lieu de naissance : {personne.data.lieuNaissance}</p>
+  <p>Date de naissance : {formatDate(personne.data.dateNaissance)}</p>
   {
     personne.data.dateDeces && (
       <p>Date de décès : {formatDate(personne.data.dateDeces)} </p>
@@ -31,8 +31,8 @@ const professions = personne.data.profession && [
   {
     professions && (
       <p>
-        Profession : {professions.length > 1} : <>s</> :
-        {professions.join(", ")}
+        Profession{professions.length > 1 && <>s</>} :{" "}
+        {professions.join(", ").replace(/, ([^,]*)$/, " et $1")}
       </p>
     )
   }

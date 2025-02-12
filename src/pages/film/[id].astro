@@ -1,8 +1,10 @@
 ---
+import LinkPersonne from "@components/LinkPersonne.astro";
 import Layout from "@layouts/Layout.astro";
 import { getEntry, getEntries } from "astro:content";
 import { getCollection, render } from "astro:content";
-import { record } from "astro:schema";
+import { formatDate } from "src/helpers";
+
 export async function getStaticPaths() {
   const film = await getCollection("film");
   return film.map((film) => ({
@@ -30,37 +32,38 @@ const roles =
 ---
 
 <Layout pageTitle={`Fiche du film ${film.data.titre}`}>
-  <h1>{film.data.titre}</h1>
-  <p>Date de sortie : {film.data.dateSortie}</p>
-  {realisateur && <p> Réalisateur : {realisateur.data.nom}</p>}
-  {
-    scenaristes && (
-      <p>
-        {" "}
-        Scénaristes :{" "}
-        {scenaristes
-          .map((s) => s.data.nom)
-          .join(", ")
-          .replace(/, ([^,]*)$/, " et $1")}
-      </p>
-    )
-  }
-  {
-    roles &&(
-      <>
-        <h2>Acteurs</h2>
-        <ul>
-          {roles.map(({ role, acteur }) => (
-            <li>
-              <strong>{role}</strong> : {acteur?.data.nom}
-            </li>
-          ))}
-        </ul>
-      </>
-    )
-  }
+  <section class="mx-8">
+    <h1>{film.data.titre}</h1>
+    <p>Date de sortie : {formatDate(film.data.dateSortie)}</p>
+    {realisateur && <p> Réalisateur :<LinkPersonne personne={realisateur}/></p>}
+    {
+      scenaristes && (
+        <p>
+          {" "}
+          Scénaristes :{" "}
+          {scenaristes
+            .map((s) => <LinkPersonne personne={s} />)
+          }
+        </p>
+      )
+    }
+    {
+      roles && (
+        <>
+          <h2>Acteurs</h2>
+          <ul>
+            {roles.map(({ role, acteur }) => (
+              <li>
+                <strong>{role}</strong>  {acteur && <>: <a href={`/personne/${acteur.id}`}>{acteur?.data.nom}</a></>}
+              </li>
+            ))}
+          </ul>
+        </>
+      )
+    }
 
-  <div class="prose">
-    <Content />
-  </div>
+    <div class="prose">
+      <Content />
+    </div>
+  </section>
 </Layout>
