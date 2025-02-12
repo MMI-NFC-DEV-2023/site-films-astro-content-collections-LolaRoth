@@ -4,10 +4,10 @@ dateSortie: 2010-07-16
 realisateur: leonardo-dicaprio
 scenaristes: 
  - robert-downey
- - nathalie-portman
+
 
 roles:
-  - acteur: leonardo-dicaprio
+  - acteur: aaron-eckhart
     role: Dom Cobb
 
 ---

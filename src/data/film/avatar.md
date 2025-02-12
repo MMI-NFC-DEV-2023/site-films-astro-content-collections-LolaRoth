@@ -5,7 +5,7 @@ realisateur: mel-gibson
 scenaristes: 
  - leonardo-dicaprio
  - robert-downey
- - nathalie-portman
+
 
 roles:
   - acteur: leonardo-dicaprio
